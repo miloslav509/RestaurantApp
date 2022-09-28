@@ -1,0 +1,8 @@
+<label for="input-price">Name </label>
+
+<div class="input-group">
+    <input type="text" class="form-control" [(ngModel)]="nameFilter.name">
+    <div class="input-group-append">
+        <button class="btn btn-outline-secondary btn-info" type="button" (click)="filterItems()">Filter</button>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-8">
+    <div class="col-6">
+      <app-filter-items (setNameFilter)="filterItems($event)"></app-filter-items>
+    </div>
+    <div class="col-4 offset-8">
+      <app-change-page (setPage)="changePage($event)"></app-change-page>
+    </div>
+      <table class="table">
+        <tr>
+          <th>name</th>
+          <th>category</th>
+          <th>price</th>
+          <th></th>
+        </tr>
+        <tr *ngFor="let item of items; let i = index">
+          <td>{{item.name}}</td>
+          <td>{{item.category.name}}</td>
+          <td>{{item.price}}</td>
+          <td>
+            <button *ngIf= "username != null" class="btn btn-danger" (click)="delete(item.id)">delete</button>
+            <button *ngIf= "username != null" class="btn btn-primary"(click)="setUpdateItem(item)">update</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-4">
+      <app-add-item *ngIf= "username != null" [newItem]="updateItem"></app-add-item>
+    </div>
+</div>
