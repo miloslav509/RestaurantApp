@@ -21,7 +21,7 @@ export class AppService {
     
   }
 
-  getItems(name: string, pageNo: number): Observable<Item[]> {
+  getItems(name: string, pageNo: number): Observable<any> {
     return this.http
       .get<Item[]>(
         `${this.itemsUrl}?name=${name}&pageNo=${pageNo}`

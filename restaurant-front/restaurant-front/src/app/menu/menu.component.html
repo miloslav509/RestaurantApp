@@ -4,7 +4,7 @@
       <app-filter-items (setNameFilter)="filterItems($event)"></app-filter-items>
     </div>
     <div class="col-4 offset-8">
-      <app-change-page (setPage)="changePage($event)"></app-change-page>
+      <app-change-page [pageNo]="pageNo" [totalPages]="totalPages" (setPage)="changePage($event)"></app-change-page>
     </div>
       <table class="table">
         <tr>

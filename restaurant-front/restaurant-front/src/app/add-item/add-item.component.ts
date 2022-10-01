@@ -36,6 +36,7 @@ export class AddItemComponent implements OnInit {
       this.appService.addItem(this.newItem).subscribe((res: Item) => {
         this.newItem = res;
         this.route.navigate(['/menu']);
+        this.reset();
       })
     } 
     

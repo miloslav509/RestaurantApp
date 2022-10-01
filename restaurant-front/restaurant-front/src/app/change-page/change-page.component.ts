@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Page } from '../common.models';
 
 @Component({
@@ -8,10 +8,17 @@ import { Page } from '../common.models';
 })
 export class ChangePageComponent implements OnInit {
   @Output() setPage: EventEmitter<Page> = new EventEmitter();
+  @Input() pageNo: number;
+  @Input() totalPages: number;
+
+
 
   public page = Page;
 
-  constructor() { }
+  constructor() {
+    this.pageNo = 0;
+    this.totalPages = 0;
+   }
 
   ngOnInit(): void {
   }

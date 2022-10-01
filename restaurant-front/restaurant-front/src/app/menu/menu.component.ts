@@ -10,9 +10,10 @@ import { NameFilter } from '../filter-items/filter-items.component';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-  items: Item[];
-  updateItem: Item;
+  public items: Item[];
+  public updateItem: Item;
 
+  public totalPages: number;
   public nameFilter: NameFilter;
   public pageNo: number = 0;
 
@@ -29,6 +30,8 @@ export class MenuComponent implements OnInit {
     this.nameFilter = {
       name: ""
     };
+
+    this.totalPages = 0;
   }
 
   ngOnInit() {
@@ -39,7 +42,7 @@ export class MenuComponent implements OnInit {
   getItems() {
     this.appService
       .getItems(this.nameFilter.name, this.pageNo)
-      .subscribe((res: Item[]) => ( this.items = res ))
+      .subscribe(res => ( this.items = res.content, this.totalPages = res.totalPages ));
   }
 
   filterItems(nameFilter: NameFilter) {

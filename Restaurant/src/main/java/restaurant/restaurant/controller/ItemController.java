@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,15 +39,16 @@ public class ItemController {
 	
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<ItemDTO>> getAllSearch(
+	public ResponseEntity<Page<ItemDTO>> getAllSearch(
 			@RequestParam(required = false)  String name,
 			@RequestParam(defaultValue = "0") int pageNo) {
 		Page<Item> items = itemSerivce.search(name, pageNo);
 		
-		HttpHeaders headers = new HttpHeaders();
-		headers.set("Total-pages", items.getTotalPages() + "");
+		List<ItemDTO> itemsDto = toDto.convert(items.toList());
 		
-		return new ResponseEntity<>(toDto.convert(items.getContent()), headers, HttpStatus.OK);
+		Page<ItemDTO> itemsPage = new PageImpl<>(itemsDto, items.getPageable(), items.getTotalElements());
+		
+		return new ResponseEntity<>(itemsPage, HttpStatus.OK);
 	}
 	
 	

@@ -1,4 +1,7 @@
 <div style="padding-top: 7%; float: right;">
-    <button class="btn btn-primary mr-3" (click)="changePage(page.prev)">prev</button>
-    <button class="btn btn-primary" (click)="changePage(page.next)">next</button>
+    <button *ngIf= "pageNo == 0" disabled class="btn btn-primary mr-3" (click)="changePage(page.prev)">prev</button>
+    <button *ngIf= "pageNo != 0" class="btn btn-primary mr-3" (click)="changePage(page.prev)">prev</button>
+    <button *ngIf= "pageNo + 1 == totalPages" disabled class="btn btn-primary" (click)="changePage(page.next)">next</button>
+    <button *ngIf= "pageNo + 1 < totalPages" class="btn btn-primary" (click)="changePage(page.next)">next</button>
+    
 </div>
